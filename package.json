@@ -1,0 +1,19 @@
+{
+  "name": "is-chrome-order",
+  "version": "0.0.0",
+  "description": "Checks if http header order is Chrome",
+  "main": "index.js",
+  "keywords": [
+    "bot",
+    "http",
+    "order",
+    "chrome",
+    "scraper",
+    "headers",
+    "chromium",
+    "fingerprint",
+    "antifingerprint"
+  ],
+  "author": "thepicture",
+  "license": "ISC"
+}
