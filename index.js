@@ -39,6 +39,14 @@ module.exports = (headers, { areRawHeaders } = { areRawHeaders: false }) => {
       value.toLowerCase()
     );
   } else if (areRawHeaders) {
+    if (headers.some((value) => typeof value !== "string")) {
+      throwUnknownInputProtocolError();
+    }
+
+    if (headers.length % 2) {
+      throwUnknownInputProtocolError();
+    }
+
     isUnknownInputProtocol = false;
 
     let headerSet = {};
@@ -54,7 +62,7 @@ module.exports = (headers, { areRawHeaders } = { areRawHeaders: false }) => {
   }
 
   if (isUnknownInputProtocol) {
-    throw new Error("Input protocol is unknown");
+    throwUnknownInputProtocolError();
   }
 
   if (keys.indexOf("accept") !== -1) {
@@ -119,4 +127,8 @@ module.exports = (headers, { areRawHeaders } = { areRawHeaders: false }) => {
     didConditionMeet5 ||
     didConditionMeet6
   );
+};
+
+const throwUnknownInputProtocolError = () => {
+  throw new Error("Input protocol is unknown");
 };
