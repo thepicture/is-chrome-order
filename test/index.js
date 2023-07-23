@@ -78,6 +78,23 @@ it("should work with entries", () => {
   assert.strictEqual(expected, actual);
 });
 
+it("should throw on unknown entries", () => {
+  const expected = {
+    message: "Input protocol is unknown",
+  };
+  const headers = [
+    ["host", ""],
+    ["accept-language", Object.apply],
+    ["user-agent", ""],
+    ["accept", ""],
+    ["accept-encoding", ""],
+  ];
+
+  const actual = () => isChromeOrder(headers);
+
+  assert.throws(actual, expected);
+});
+
 it("should throw on unknown protocol", () => {
   const expected = {
     message: "Input protocol is unknown",
@@ -115,4 +132,51 @@ it("should work with rawHeaders entries", () => {
   const actual = isChromeOrder(headers, { areRawHeaders: true });
 
   assert.strictEqual(expected, actual);
+});
+
+it("should throw on unknown rawHeaders entries", () => {
+  const expected = {
+    message: "Input protocol is unknown",
+  };
+  const headers = [
+    "user-agent",
+    "this is invalid because there can be only one",
+    "Host",
+    "127.0.0.1:8000",
+    "accept-language",
+    "",
+    Object.apply,
+    "curl/7.22.0",
+    "ACCEPT",
+    "*",
+    "ACCEPT-encoding",
+    "gzip",
+  ];
+
+  const actual = () => isChromeOrder(headers, { areRawHeaders: true });
+
+  assert.throws(actual, expected);
+});
+
+it("should throw on odd rawHeaders entries", () => {
+  const expected = {
+    message: "Input protocol is unknown",
+  };
+  const headers = [
+    "user-agent",
+    "this is invalid because there can be only one",
+    "Host",
+    "127.0.0.1:8000",
+    "accept-language",
+    "",
+    "ACCEPT",
+    "*",
+    "ACCEPT-encoding",
+    "gzip",
+    "node",
+  ];
+
+  const actual = () => isChromeOrder(headers, { areRawHeaders: true });
+
+  assert.throws(actual, expected);
 });
