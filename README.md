@@ -14,9 +14,9 @@ const port = 3000;
 const app = express();
 
 app.get("/", ({ headers }, res) => {
-  const operation = isChromeOrder(headers) ? "are" : "are not";
+  const are = isChromeOrder(headers) ? "are" : "are not";
 
-  res.send(`You ${operation} chrome!`);
+  res.send(`You ${are} chrome!`);
 });
 
 app.listen(port);
@@ -86,3 +86,7 @@ app.listen(port);
 ```bash
 node test
 ```
+
+## Related repository
+
+[is-firefox-order](https://github.com/thepicture/is-firefox-order)
