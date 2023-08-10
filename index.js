@@ -119,13 +119,20 @@ module.exports = (headers, { areRawHeaders } = { areRawHeaders: false }) => {
     indexOfUserAgent < indexOfAccept &&
     indexOfAccept < indexOfAcceptEncoding;
 
+  const isWindowsChrome =
+    indexOfHost < indexOfUserAgent &&
+    indexOfUserAgent < indexOfAccept &&
+    indexOfAccept < indexOfAcceptEncoding &&
+    indexOfAcceptEncoding < indexOfAcceptLanguage;
+
   return !!(
     didConditionMeet1 ||
     didConditionMeet2 ||
     didConditionMeet3 ||
     didConditionMeet4 ||
     didConditionMeet5 ||
-    didConditionMeet6
+    didConditionMeet6 ||
+    isWindowsChrome
   );
 };
 
