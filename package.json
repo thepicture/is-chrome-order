@@ -3,6 +3,7 @@
   "version": "1.0.3",
   "description": "Checks if http header order is Chrome",
   "main": "index.js",
+  "repository": "thepicture/is-chrome-order",
   "keywords": [
     "bot",
     "http",
