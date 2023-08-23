@@ -1,6 +1,6 @@
 {
   "name": "is-chrome-order",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Checks if http header order is Chrome",
   "main": "index.js",
   "repository": "thepicture/is-chrome-order",
